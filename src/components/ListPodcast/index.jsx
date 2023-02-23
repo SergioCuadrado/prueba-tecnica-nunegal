@@ -1,17 +1,13 @@
-import React from 'react'
-import { feed } from '@/mocks/resultsPodcasts.json'
-
 import './styles.css'
 
-export const ListPodcast = () => {
-  const { entry } = feed
+export const ListPodcast = ({ podcasts }) => {
   return (
     <ul className='list-products'>
-      {entry.map((podcast) => (
-        <li key={podcast.id.attributes['im:id']}>
-          <img src={podcast['im:image'][2].label} alt={podcast['im:name'].label} />
-          <h2>{podcast['im:name'].label.toUpperCase()}</h2>
-          <p>Author: {podcast['im:artist'].label}</p>
+      {podcasts.map((podcast) => (
+        <li key={podcast?.id}>
+          <img src={podcast?.image} alt={podcast?.title} />
+          <h2>{podcast?.title.toUpperCase()}</h2>
+          <p>Author: {podcast?.author}</p>
         </li>
       ))}
     </ul>

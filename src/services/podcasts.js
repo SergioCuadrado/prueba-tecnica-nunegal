@@ -8,7 +8,8 @@ export const getPodcasts = async () => {
       return {
         id: podcast.id.attributes['im:id'],
         title: podcast['im:name'].label,
-        author: podcast['im:artist'].label
+        author: podcast['im:artist'].label,
+        image: podcast['im:image'][2].label
       }
     })
   } catch (e) {
