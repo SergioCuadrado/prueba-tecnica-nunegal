@@ -1,37 +1,32 @@
 import { useEffect, useState } from 'react'
-import './App.css'
 import { ListPodcast } from '@/components/ListPodcast'
-import { getPodcasts } from '@/services/podcasts'
+import { usePodcasts } from './hooks/usePodcasts'
+
+import './App.css'
 
 function App () {
-  const [podcasts, setPodcasts] = useState([])
-  const [valueSearch, setValueSearch] = useState([])
-
-  // filter podcasts for title and name authors
-  // const filterPodcasts = podcasts.filter(podcast => {
-  //   return podcast.title.toLowerCase().includes(podcasts.toLowerCase()) || podcast.authors.toLowerCase().includes(podcasts.toLowerCase())
-  // })
+  const { podcasts, getPodcasts, filteredPodcasts } = usePodcasts()
+  const [valueSearch, setValueSearch] = useState('')
 
   const handleSearch = (e) => {
+    filteredPodcasts(e.target.value)
     setValueSearch(e.target.value)
   }
 
-  const podcastsGet = async () => {
-    const response = await getPodcasts()
-    setPodcasts(response)
-    console.log(response)
+  const handleSubmit = (e) => {
+    e.preventDefault()
   }
 
   useEffect(() => {
-    podcastsGet()
+    getPodcasts()
   }, [])
 
   return (
     <div>
       <header>
         <h1 className='title-app'>Podcaster</h1>
-        <form className='form'>
-          <strong>100</strong>
+        <form className='form' onSubmit={handleSubmit}>
+          <strong>{podcasts?.length}</strong>
           <input type='text' placeholder='Filter podcasts...' value={valueSearch} onChange={handleSearch} />
         </form>
       </header>
