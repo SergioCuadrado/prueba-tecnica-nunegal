@@ -7,6 +7,21 @@
     width: 100%;
     height: 100%;
     padding: 0 20px; */
-    padding: 10px 15px;
+    padding: 15px;
+}
 
+.section-detail-episode h2 {
+    margin: 0;
+}
+
+.section-detail-episode .detail-information {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.section-detail-episode .detail-audio {
+    margin-top: 15px;
+}
+
+.detail-audio audio {
+    width: 100%;
 }

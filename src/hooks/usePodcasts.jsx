@@ -9,7 +9,8 @@ const updateLocalStorage = (item, state) => {
 
 export const usePodcasts = () => {
   const { podcasts, setPodcasts } = useContext(PodcastsContext)
-  const [details, setDetails] = useState({})
+  const [details, setDetails] = useState([])
+  const [episode, setEpisode] = useState({})
   const [loading, setLoading] = useState(false)
   const ONE_DAY = 60 * 60 * 24 * 1000
 
@@ -72,5 +73,10 @@ export const usePodcasts = () => {
     }
   }, [podcasts])
 
-  return { loading, podcasts: podcasts.filterPodcasts, getPodcasts, filteredPodcasts, getPodcastById, detailOfPodcast, details }
+  const detailEpisode = useCallback((id) => {
+    if (!details || details.length === 0) return null
+    if (!loading) setEpisode(details?.find((detail) => detail?.id === id))
+  }, [details])
+
+  return { loading, podcasts: podcasts.filterPodcasts, getPodcasts, filteredPodcasts, getPodcastById, detailOfPodcast, details, detailEpisode, episode }
 }

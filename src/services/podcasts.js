@@ -36,7 +36,7 @@ export const detailPodcast = async (id) => {
       const date = item.querySelector('pubDate').textContent
       // format date to YYYY/MM/DD
       const dateFormated = new Date(date).toISOString().split('T')[0].split('-').reverse().join('/')
-      const link = item.querySelector('enclosure').getAttribute('url')
+      const audio = item.querySelector('enclosure').getAttribute('url')
       const description = item.querySelector('description').textContent
       const id = item.querySelector('guid').textContent
 
@@ -45,7 +45,7 @@ export const detailPodcast = async (id) => {
         duration,
         date: dateFormated,
         id,
-        link,
+        audio,
         description
       }
     })
