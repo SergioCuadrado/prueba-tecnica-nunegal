@@ -6,7 +6,7 @@ import App from './App'
 import { DetailPodcast } from './pages/DetailPodcast'
 
 import './index.css'
-import { Products } from './pages/Products'
+import { Podcasts } from './pages/Podcasts'
 import { PodcastsProvider } from './contexts/podcasts'
 
 const router = createBrowserRouter([
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Products />
+        element: <Podcasts />
       },
       {
         path: 'podcast/:podcastId',

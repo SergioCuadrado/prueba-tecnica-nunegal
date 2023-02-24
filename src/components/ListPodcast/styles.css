@@ -1,4 +1,4 @@
-.list-products {
+.list-podcasts {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     row-gap: 50px;
@@ -7,7 +7,7 @@
     padding: 0;
 }
 
-.list-products li {
+.list-podcasts li {
     list-style: none;
     padding: 0;
     width: 100%;
@@ -24,16 +24,16 @@
     box-sizing: border-box;
 }
 
-.list-products a {
+.list-podcasts a {
     text-decoration: none;
     color: #000;
 }
 
-.list-products a:hover {
+.list-podcasts a:hover {
     color: var(--color-primary);
 }
 
-.list-products li img {
+.list-podcasts li img {
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -43,14 +43,14 @@
     margin: auto;
 }
 
-.list-products li h2 {
+.list-podcasts li h2 {
     font-size: 1.2rem;
     font-weight: 600;
     margin: 20px 0 0 0;
     padding: 0;
 }
 
-.list-products li p {
+.list-podcasts li p {
     font-size: 1rem;
     font-weight: 400;
     margin: 0;

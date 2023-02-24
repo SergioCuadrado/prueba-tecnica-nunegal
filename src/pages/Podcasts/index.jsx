@@ -4,7 +4,7 @@ import { usePodcasts } from '@/hooks/usePodcasts'
 
 import './styles.css'
 
-export const Products = () => {
+export const Podcasts = () => {
   const { podcasts, filteredPodcasts } = usePodcasts()
   const [valueSearch, setValueSearch] = useState('')
 

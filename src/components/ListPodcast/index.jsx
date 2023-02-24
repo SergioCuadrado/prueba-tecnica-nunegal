@@ -3,7 +3,7 @@ import './styles.css'
 
 export const ListPodcast = ({ podcasts }) => {
   return (
-    <ul className='list-products'>
+    <ul className='list-podcasts'>
       {podcasts.map((podcast) => (
         <Link key={podcast?.id} to={`/podcast/${podcast?.id}`}>
           <li>
