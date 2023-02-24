@@ -1,10 +1,11 @@
 import { useCallback, useState, useContext } from 'react'
-import { searchPodcasts } from '@/services/podcasts'
+import { searchPodcasts, detailPodcast } from '@/services/podcasts'
 
 import { PodcastsContext } from '@/contexts/podcasts'
 
 export const usePodcasts = () => {
   const { podcasts, setPodcasts } = useContext(PodcastsContext)
+  const [details, setDetails] = useState({})
   const [loading, setLoading] = useState(false)
 
   const getPodcasts = useCallback(async () => {
@@ -47,5 +48,15 @@ export const usePodcasts = () => {
     if (!loading) return podcasts?.podcasts.find((podcast) => podcast?.id === id)
   }, [podcasts])
 
-  return { loading, podcasts: podcasts.filterPodcasts, getPodcasts, filteredPodcasts, getPodcastById }
+  const detailOfPodcast = useCallback(async (id) => {
+    if (!podcasts) return null
+    try {
+      const details = await detailPodcast(id)
+      setDetails(details)
+    } catch (error) {
+      console.warn(error)
+    }
+  }, [podcasts])
+
+  return { loading, podcasts: podcasts.filterPodcasts, getPodcasts, filteredPodcasts, getPodcastById, detailOfPodcast, details }
 }

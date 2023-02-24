@@ -30,7 +30,7 @@
 }
 
 .list-products a:hover {
-    color: #3877ba;
+    color: var(--color-primary);
 }
 
 .list-products li img {
