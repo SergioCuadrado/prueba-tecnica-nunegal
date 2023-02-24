@@ -1,11 +1,11 @@
-section div {
+.section-table div {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 10px 15px;
     margin-bottom: 25px;
 }
 
-section h2 {
+.section-table h2 {
     font-size: 1.5rem;
     font-weight: 700;
     margin: 0;

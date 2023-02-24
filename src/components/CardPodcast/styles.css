@@ -34,9 +34,12 @@
     border-radius: 5px;
 }
 
+.card .card-header {
+    margin-bottom: 20px;
+}
+
 .card div {
     padding-top: 20px;
-    margin-bottom: 20px;
 }
 
 .card-header h2 {

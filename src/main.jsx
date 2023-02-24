@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import App from './App'
-import { DetailPodcast } from './pages/DetailPodcast'
+import { DetailPodcast } from '@/pages/DetailPodcast'
 
 import './index.css'
-import { Podcasts } from './pages/Podcasts'
-import { PodcastsProvider } from './contexts/podcasts'
-import { DetailEpisodePodcast } from './pages/DetailEpisodePodcast'
-import { TableDetailPodcast } from './components/TableDetailPodcast'
+import { Podcasts } from '@/pages/Podcasts'
+import { PodcastsProvider } from '@/contexts/podcasts'
+import { TableDetailPodcast } from '@/components/TableDetailPodcast'
+import { DetailEpisodePodcast } from '@/components/DetailEpisodePodcast'
 
 const router = createBrowserRouter([
   {

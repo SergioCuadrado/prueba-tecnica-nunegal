@@ -13,7 +13,7 @@ export const TableDetailPodcast = () => {
   }, [podcastId])
 
   return (
-    <section>
+    <section className='section-table'>
       <div>
         <h2>Episodes: {details?.length}</h2>
       </div>
@@ -39,7 +39,6 @@ export const TableDetailPodcast = () => {
           </tbody>
         </table>
       </div>
-
     </section>
 
   )
