@@ -2,6 +2,8 @@ import { ListPodcast } from '@/components/ListPodcast'
 import { useState } from 'react'
 import { usePodcasts } from '@/hooks/usePodcasts'
 
+import './styles.css'
+
 export const Products = () => {
   const { podcasts, filteredPodcasts } = usePodcasts()
   const [valueSearch, setValueSearch] = useState('')
