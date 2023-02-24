@@ -8,10 +8,9 @@ const updateLocalStorage = (item, state) => {
 }
 
 export const usePodcasts = () => {
-  const { podcasts, setPodcasts } = useContext(PodcastsContext)
+  const { podcasts, setPodcasts, loading, setLoading } = useContext(PodcastsContext)
   const [details, setDetails] = useState([])
   const [episode, setEpisode] = useState({})
-  const [loading, setLoading] = useState(false)
   const ONE_DAY = 60 * 60 * 24 * 1000
 
   const getPodcasts = useCallback(async () => {
@@ -55,6 +54,7 @@ export const usePodcasts = () => {
   const detailOfPodcast = useCallback(async (id) => {
     if (!podcasts) return null
     try {
+      setLoading(true)
       const localPodcasts = window.localStorage.getItem(`details-podcasts-${id}`) ? JSON.parse(window.localStorage.getItem(`details-podcasts-${id}`)) : null
 
       if (new Date(Date.now()) < new Date(localPodcasts?.expires)) {
@@ -70,6 +70,8 @@ export const usePodcasts = () => {
       setDetails(details)
     } catch (error) {
       console.warn(error)
+    } finally {
+      setLoading(false)
     }
   }, [podcasts])
 

@@ -7,9 +7,10 @@ export const PodcastsProvider = ({ children }) => {
     podcasts: [],
     filterPodcasts: []
   })
+  const [loading, setLoading] = useState(false)
 
   return (
-    <PodcastsContext.Provider value={{ podcasts, setPodcasts }}>
+    <PodcastsContext.Provider value={{ podcasts, setPodcasts, loading, setLoading }}>
       {children}
     </PodcastsContext.Provider>
   )
