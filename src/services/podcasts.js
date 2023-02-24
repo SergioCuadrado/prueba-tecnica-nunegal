@@ -17,7 +17,7 @@ export const searchPodcasts = async () => {
     console.warn('Error getting podcasts')
   }
 }
-// fetch XML get information of podcasts
+
 export const detailPodcast = async (id) => {
   try {
     const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://itunes.apple.com/lookup?id=${id}`)}`)

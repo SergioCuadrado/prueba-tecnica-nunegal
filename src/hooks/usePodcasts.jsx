@@ -3,15 +3,20 @@ import { searchPodcasts, detailPodcast } from '@/services/podcasts'
 
 import { PodcastsContext } from '@/contexts/podcasts'
 
+const updateLocalStorage = (item, state) => {
+  window.localStorage.setItem(item, JSON.stringify(state))
+}
+
 export const usePodcasts = () => {
   const { podcasts, setPodcasts } = useContext(PodcastsContext)
   const [details, setDetails] = useState({})
   const [loading, setLoading] = useState(false)
+  const ONE_DAY = 60 * 60 * 24 * 1000
 
   const getPodcasts = useCallback(async () => {
     try {
       setLoading(true)
-      let localPodcasts = window.localStorage.getItem('podcasts') ? JSON.parse(window.localStorage.getItem('podcasts')) : null
+      const localPodcasts = window.localStorage.getItem('podcasts') ? JSON.parse(window.localStorage.getItem('podcasts')) : null
 
       // if you ask for the information until 24 hours have passed that you get it from localstorage
       if (new Date(Date.now()) < new Date(localPodcasts?.expires)) {
@@ -20,13 +25,11 @@ export const usePodcasts = () => {
       }
 
       const podcasts = await searchPodcasts()
-      const ONE_DAY = 60 * 60 * 24 * 1000
 
-      localPodcasts = {
+      updateLocalStorage('podcasts', {
         podcasts,
         expires: new Date(Date.now() + ONE_DAY)
-      }
-      window.localStorage.setItem('podcasts', JSON.stringify(localPodcasts))
+      })
 
       setPodcasts({ ...podcasts, podcasts, filterPodcasts: podcasts })
     } catch (error) {
@@ -51,7 +54,18 @@ export const usePodcasts = () => {
   const detailOfPodcast = useCallback(async (id) => {
     if (!podcasts) return null
     try {
+      const localPodcasts = window.localStorage.getItem(`details-podcasts-${id}`) ? JSON.parse(window.localStorage.getItem(`details-podcasts-${id}`)) : null
+
+      if (new Date(Date.now()) < new Date(localPodcasts?.expires)) {
+        setDetails(localPodcasts.details)
+        return
+      }
+
       const details = await detailPodcast(id)
+      updateLocalStorage(`details-podcasts-${id}`, {
+        details,
+        expires: new Date(Date.now() + ONE_DAY)
+      })
       setDetails(details)
     } catch (error) {
       console.warn(error)
