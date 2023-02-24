@@ -14,7 +14,7 @@ export const DetailEpisodePodcast = () => {
   useEffect(() => {
     if (details) detailEpisode(episodeId)
   }, [details])
-  console.log('episode', episode)
+
   return (
     <section className='section-detail-episode'>
       <div className='detail-information'>

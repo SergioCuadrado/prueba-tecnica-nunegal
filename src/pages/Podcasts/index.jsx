@@ -1,5 +1,5 @@
 import { ListPodcast } from '@/components/ListPodcast'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { usePodcasts } from '@/hooks/usePodcasts'
 
 import './styles.css'
@@ -16,6 +16,10 @@ export const Podcasts = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
   }
+
+  useEffect(() => {
+    filteredPodcasts('')
+  }, [])
 
   return (
     <>
