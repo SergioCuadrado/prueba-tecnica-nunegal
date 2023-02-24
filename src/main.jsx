@@ -8,6 +8,8 @@ import { DetailPodcast } from './pages/DetailPodcast'
 import './index.css'
 import { Podcasts } from './pages/Podcasts'
 import { PodcastsProvider } from './contexts/podcasts'
+import { DetailEpisodePodcast } from './pages/DetailEpisodePodcast'
+import { TableDetailPodcast } from './components/TableDetailPodcast'
 
 const router = createBrowserRouter([
   {
@@ -20,7 +22,17 @@ const router = createBrowserRouter([
       },
       {
         path: 'podcast/:podcastId',
-        element: <DetailPodcast />
+        element: <DetailPodcast />,
+        children: [
+          {
+            path: '',
+            element: <TableDetailPodcast />
+          },
+          {
+            path: 'episode/:episodeId',
+            element: <DetailEpisodePodcast />
+          }
+        ]
       }
     ]
   }

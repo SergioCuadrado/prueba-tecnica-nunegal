@@ -11,6 +11,18 @@
     transition: all 0.3s ease;
 }
 
+.card a {
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+}
+
+.card a:hover {
+    text-decoration: none;
+    color: var(--color-primary);
+} 
+
 .card img {
     width: 200px;
     height: 200px;
