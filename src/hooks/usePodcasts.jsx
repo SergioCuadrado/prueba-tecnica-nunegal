@@ -1,15 +1,15 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useContext } from 'react'
 import { searchPodcasts } from '@/services/podcasts'
 
+import { PodcastsContext } from '@/contexts/podcasts'
+
 export const usePodcasts = () => {
-  const [podcasts, setPodcasts] = useState({
-    podcasts: [],
-    filterPodcasts: []
-  })
+  const { podcasts, setPodcasts } = useContext(PodcastsContext)
   const [loading, setLoading] = useState(false)
 
   const getPodcasts = useCallback(async () => {
     try {
+      setLoading(true)
       let localPodcasts = window.localStorage.getItem('podcasts') ? JSON.parse(window.localStorage.getItem('podcasts')) : null
 
       // if you ask for the information until 24 hours have passed that you get it from localstorage
@@ -18,7 +18,6 @@ export const usePodcasts = () => {
         return
       }
 
-      setLoading(true)
       const podcasts = await searchPodcasts()
       const ONE_DAY = 60 * 60 * 24 * 1000
 
@@ -43,5 +42,10 @@ export const usePodcasts = () => {
     setPodcasts({ ...podcasts, filterPodcasts: filterPodcastsValues })
   }, [podcasts])
 
-  return { loading, podcasts: podcasts.filterPodcasts, getPodcasts, filteredPodcasts }
+  const getPodcastById = useCallback((id) => {
+    if (!podcasts) return null
+    if (!loading) return podcasts?.podcasts.find((podcast) => podcast?.id === id)
+  }, [podcasts])
+
+  return { loading, podcasts: podcasts.filterPodcasts, getPodcasts, filteredPodcasts, getPodcastById }
 }

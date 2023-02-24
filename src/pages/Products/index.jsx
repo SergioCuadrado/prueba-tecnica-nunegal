@@ -1,9 +1,9 @@
 import { ListPodcast } from '@/components/ListPodcast'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { usePodcasts } from '@/hooks/usePodcasts'
 
 export const Products = () => {
-  const { podcasts, getPodcasts, filteredPodcasts } = usePodcasts()
+  const { podcasts, filteredPodcasts } = usePodcasts()
   const [valueSearch, setValueSearch] = useState('')
 
   const handleSearch = (e) => {
@@ -14,10 +14,6 @@ export const Products = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
   }
-
-  useEffect(() => {
-    getPodcasts()
-  }, [])
 
   return (
     <>

@@ -9,7 +9,8 @@ export const searchPodcasts = async () => {
         id: podcast.id.attributes['im:id'],
         title: podcast['im:name'].label,
         author: podcast['im:artist'].label,
-        image: podcast['im:image'][2].label
+        image: podcast['im:image'][2].label,
+        description: podcast.summary.label
       }
     })
   } catch (e) {

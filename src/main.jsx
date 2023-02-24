@@ -7,6 +7,7 @@ import { DetailPodcast } from './pages/DetailPodcast'
 
 import './index.css'
 import { Products } from './pages/Products'
+import { PodcastsProvider } from './contexts/podcasts'
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
         element: <Products />
       },
       {
-        path: 'podcast/:id',
+        path: 'podcast/:podcastId',
         element: <DetailPodcast />
       }
     ]
@@ -27,6 +28,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <PodcastsProvider>
+      <RouterProvider router={router} />
+    </PodcastsProvider>
   </React.StrictMode>
 )
