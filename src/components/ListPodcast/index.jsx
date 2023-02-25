@@ -1,7 +1,9 @@
+import { usePodcasts } from '@/hooks/usePodcasts'
 import { Link } from 'react-router-dom'
 import './styles.css'
 
-export const ListPodcast = ({ podcasts }) => {
+export const ListPodcast = () => {
+  const { podcasts } = usePodcasts()
   return (
     <ul className='list-podcasts'>
       {podcasts.map((podcast) => (
