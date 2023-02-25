@@ -8,8 +8,15 @@
 pnpm install
 ```
 
-- Luego ejecuta el siguiente comando para iniciar el proyecto
+- Luego ejecuta el siguiente comando para iniciar el proyecto en modo development
 
 ```
 pnpm run dev
+```
+
+- Para iniciar el proyecto en modo production
+
+```
+pnpm run build
+pnpm run start
 ```
