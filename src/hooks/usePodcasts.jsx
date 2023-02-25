@@ -61,7 +61,8 @@ export const usePodcasts = () => {
         setDetails(localPodcasts.details)
         return
       }
-
+      const existsPodcast = podcasts?.podcasts.find((podcast) => podcast?.id === id)
+      if (!existsPodcast) throw new Error('Podcast not found')
       const details = await detailPodcast(id)
       updateLocalStorage(`details-podcasts-${id}`, {
         details,
@@ -77,7 +78,11 @@ export const usePodcasts = () => {
 
   const detailEpisode = useCallback((id) => {
     if (!details || details.length === 0) return null
-    if (!loading) setEpisode(details?.find((detail) => detail?.id === id))
+    if (!loading) {
+      const episode = details?.find((detail) => detail?.id === id)
+      if (!episode) console.warn('Episode not found')
+      setEpisode(episode)
+    }
   }, [details])
 
   return { loading, podcasts: podcasts.filterPodcasts, getPodcasts, filteredPodcasts, getPodcastById, detailOfPodcast, details, detailEpisode, episode }
