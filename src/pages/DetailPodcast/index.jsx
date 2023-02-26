@@ -13,7 +13,6 @@ export const DetailPodcast = () => {
   const { getPodcastById } = usePodcasts()
 
   useEffect(() => {
-    // filter if not exist return 404
     setPodcast(getPodcastById(podcastId))
   }, [getPodcastById])
 

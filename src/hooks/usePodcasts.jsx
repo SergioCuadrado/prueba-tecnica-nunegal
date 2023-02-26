@@ -61,14 +61,15 @@ export const usePodcasts = () => {
         setDetails(localPodcasts.details)
         return
       }
-      const existsPodcast = podcasts?.podcasts.find((podcast) => podcast?.id === id)
-      if (!existsPodcast) throw new Error('Podcast not found')
+      podcasts?.podcasts.find((podcast) => podcast?.id === id)
       const details = await detailPodcast(id)
-      updateLocalStorage(`details-podcasts-${id}`, {
-        details,
-        expires: new Date(Date.now() + ONE_DAY)
-      })
-      setDetails(details)
+      if (details.length > 0) {
+        updateLocalStorage(`details-podcasts-${id}`, {
+          details,
+          expires: new Date(Date.now() + ONE_DAY)
+        })
+        setDetails(details)
+      } else throw new Error('Podcast not found')
     } catch (error) {
       console.warn(error)
     } finally {
