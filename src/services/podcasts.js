@@ -38,7 +38,11 @@ export const detailPodcast = async (id) => {
       const dateFormated = new Date(date).toISOString().split('T')[0].split('-').reverse().join('/')
       const audio = item.querySelector('enclosure')?.getAttribute('url')
       const description = item.querySelector('description').textContent
-      const id = item.querySelector('guid').textContent
+      let id = item.querySelector('guid').textContent
+      if (id.includes('/')) {
+        // select only the id
+        id = id.split('/')[id.split('/').length - 1]
+      }
 
       return {
         title,
